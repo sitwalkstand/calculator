@@ -14,12 +14,8 @@ jobs:
   steps:
   - checkout: none
 
-  - task: PowerShell@1
+  - powershell: Set-DisplayResolution -Width 1920 -Height 1080 -Force
     displayName: Set resolution to 1920x1080
-    inputs:
-      scriptType: inlineScript
-      arguments: -NonInteractive -Force:$true -Verb RunAs
-      inlineScript: Set-DisplayResolution -Width 1920 -Height 1080 -Force
     continueOnError: true
 
   - task: DownloadBuildArtifacts@0
@@ -47,14 +43,11 @@ jobs:
   - task: PowerShell@2
     displayName: Install appx
     inputs:
-      scriptName: $(Build.ArtifactStagingDirectory)/drop/Release/${{ parameters.platform }}/Calculator/AppPackages/Calculator_$(Build.BuildNumber)_Test/Add-AppDevPackage.ps1
+      filePath: $(Build.ArtifactStagingDirectory)/drop/Release/${{ parameters.platform }}/Calculator/AppPackages/Calculator_$(Build.BuildNumber)_Test/Add-AppDevPackage.ps1
       arguments: -NonInteractive -CertificatePath $(Build.ArtifactStagingDirectory)/drop/Release/${{ parameters.platform }}/Calculator/AppPackages/Calculator_$(Build.BuildNumber)_Test/Calculator_$(Build.BuildNumber)_.cer -Force
 
-  - task: PowerShell@2
+  - powershell: Start-Process -FilePath "C:\Program Files (x86)\Windows Application Driver\WinAppDriver.exe" -Verb RunAs
     displayName: Start WinAppDriver
-    inputs:
-      scriptType: inlineScript
-      inlineScript: Start-Process -FilePath "C:\Program Files (x86)\Windows Application Driver\WinAppDriver.exe" -Verb RunAs
 
   - task: VSTest@2
     displayName: 'VsTest - Execute WinAppDriver Tests'
