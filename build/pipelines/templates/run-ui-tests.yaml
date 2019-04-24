@@ -43,6 +43,6 @@ jobs:
     inputs:
       testAssemblyVer2: $(Build.ArtifactStagingDirectory)/drop/Release/${{ parameters.platform }}/CalculatorUITests/CalculatorUITests.dll
       vsTestVersion: 16.0
-      runSettingsFile: $(Build.SourcesDirectory)/src/CalculatorUITests/TestSettings1.runsettings
+      runSettingsFile: $(Build.SourcesDirectory)/src/CalculatorUITests/CalculatorUITests.runsettings
       platform: ${{ parameters.platform }}
       configuration: Release
