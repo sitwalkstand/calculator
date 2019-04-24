@@ -54,4 +54,3 @@ jobs:
       runSettingsFile: $(Build.SourcesDirectory)/src/CalculatorUITests/TestSettings1.runsettings
       platform: ${{ parameters.platform }}
       configuration: Release
-    continueOnError: true
