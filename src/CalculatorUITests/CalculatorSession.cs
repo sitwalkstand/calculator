@@ -26,7 +26,7 @@ namespace CalculatorUITests
                 appCapabilities.SetCapability("app", CalculatorAppId);
                 appCapabilities.SetCapability("deviceName", "WindowsPC");
                 session = new WindowsDriver<WindowsElement>(new Uri(WindowsApplicationDriverUrl), appCapabilities);
-                session.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(180);
+                session.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(180));
                 Assert.IsNotNull(session);
             }
         }

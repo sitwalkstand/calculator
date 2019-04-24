@@ -56,8 +56,8 @@
     <Compile Include="CalculatorSession.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.WinAppDriver.Appium.WebDriver">
-      <Version>1.0.1-Preview</Version>
+    <PackageReference Include="Appium.WebDriver">
+      <Version>3.0.0.2</Version>
     </PackageReference>
     <PackageReference Include="MSTest.TestAdapter">
       <Version>2.0.0-beta2</Version>
