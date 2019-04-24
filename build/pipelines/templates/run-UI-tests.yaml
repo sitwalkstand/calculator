@@ -7,7 +7,7 @@ parameters:
 jobs:
 - job: UITests${{ parameters.platform }}
   displayName: UITests ${{ parameters.platform }}
-  dependsOn: Package
+  dependsOn: Build${{ parameters.platform }}
   condition: succeeded()
   pool:
     vmImage: windows-2019
