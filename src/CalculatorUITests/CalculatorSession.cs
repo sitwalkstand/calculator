@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
-using OpenQA.Selenium.Remote;
 using System;
 
 namespace CalculatorUITests
@@ -22,11 +22,11 @@ namespace CalculatorUITests
             {
                 // Create a new session to bring up an instance of the Calculator application
                 // Note: Multiple calculator windows (instances) share the same process Id
-                DesiredCapabilities appCapabilities = new DesiredCapabilities();
-                appCapabilities.SetCapability("app", CalculatorAppId);
-                appCapabilities.SetCapability("deviceName", "WindowsPC");
-                session = new WindowsDriver<WindowsElement>(new Uri(WindowsApplicationDriverUrl), appCapabilities);
-                session.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(180));
+                var options = new AppiumOptions();
+                options.AddAdditionalCapability("app", CalculatorAppId);
+                options.AddAdditionalCapability("deviceName", "WindowsPC");
+                session = new WindowsDriver<WindowsElement>(new Uri(WindowsApplicationDriverUrl), options);
+                session.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(180);
                 Assert.IsNotNull(session);
             }
         }
