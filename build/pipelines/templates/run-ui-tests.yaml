@@ -10,6 +10,8 @@ jobs:
   condition: succeeded()
   pool:
     vmImage: windows-2019
+  variables:
+    skipComponentGovernanceDetection: true
   steps:
   - checkout: none
 
