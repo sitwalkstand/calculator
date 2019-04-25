@@ -11,6 +11,8 @@ jobs:
   pool:
     vmImage: windows-2019
   steps:
+  - checkout: none
+
   - powershell: Set-DisplayResolution -Width 1920 -Height 1080 -Force
     displayName: Set resolution to 1920x1080
     continueOnError: true
@@ -43,6 +45,6 @@ jobs:
     inputs:
       testAssemblyVer2: $(Build.ArtifactStagingDirectory)/drop/Release/${{ parameters.platform }}/publish/CalculatorUITests.dll
       vsTestVersion: 16.0
-      runSettingsFile: $(Build.SourcesDirectory)/src/CalculatorUITests/CalculatorUITests.runsettings
+      runSettingsFile: $(Build.ArtifactStagingDirectory)/drop/Release/${{ parameters.platform }}/publish/CalculatorUITests.runsettings
       platform: ${{ parameters.platform }}
       configuration: Release
