@@ -21,7 +21,7 @@ jobs:
       artifactName: drop
       itemPattern: |
         drop/Release/${{ parameters.platform }}/Calculator/AppPackages/**
-        drop/Release/${{ parameters.platform }}/CalculatorUITests/**
+        drop/Release/${{ parameters.platform }}/publish/**
 
   - task: PowerShell@2
     displayName: Install certificate
@@ -41,7 +41,7 @@ jobs:
   - task: VSTest@2
     displayName: Run CalculatorUITests
     inputs:
-      testAssemblyVer2: $(Build.ArtifactStagingDirectory)/drop/Release/${{ parameters.platform }}/CalculatorUITests/CalculatorUITests.dll
+      testAssemblyVer2: $(Build.ArtifactStagingDirectory)/drop/Release/${{ parameters.platform }}/publish/CalculatorUITests.dll
       vsTestVersion: 16.0
       runSettingsFile: $(Build.SourcesDirectory)/src/CalculatorUITests/CalculatorUITests.runsettings
       platform: ${{ parameters.platform }}
